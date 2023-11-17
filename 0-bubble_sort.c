@@ -1,32 +1,40 @@
 #include "sort.h"
 /**
+ * swap - changing the vlaues of 2 elements
+ * @a: first to swap
+ * @b: second to swap
+ */
+void swap(int *a, int *b)
+{
+	int temp = *a;
+	*a = *b;
+	*b = temp;
+}
+/**
  * bubble_sort - sorting using bubble algorithm
  * @array: array to be sorted
  * @size: size of array
  */
 void bubble_sort(int *array, size_t size)
 {
-	size_t i, j;
-	int temp;
-	bool swapped;
+	int swaps;
+	size_t i;
 
 	if (array == NULL || size < 2)
 		return;
-	for (i = 0; i < size - 1; i++)
+	while (1)
 	{
-		swapped = false;
-		for (j = 0; j < size - i - 1; j++)
+		swaps = 0;
+		for (i = 0; i < size - 1; i++)
 		{
-			if (array[j] > array[j + 1])
+			if (array[i] > array[i + 1])
 			{
-				temp = array[j];
-				array[j] = array[j + 1];
-				array[j + 1] = temp;
+				swap(&array[i], &array[i + 1]);
+				swaps += 1;
 				print_array(array, size);
 			}
-			swapped = true;
 		}
-		if (swapped == false)
+		if (swaps == 0)
 			break;
 	}
 }
