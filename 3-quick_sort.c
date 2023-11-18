@@ -35,6 +35,7 @@ int partiniorLomuto(int *array, int low, int high, size_t size)
 				print_array(array, size);
 		}
 	}
+	i++;
 	swap(&array[i], &array[high]);
 	if (i != high)
 		print_array(array, size);
