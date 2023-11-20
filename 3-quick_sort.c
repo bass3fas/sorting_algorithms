@@ -1,4 +1,7 @@
 #include "sort.h"
+void swap(int *a, int *b);
+int partiniorLomuto(int *array, int low, int high, size_t size);
+void sorter(int *array, int low, int high, size_t size);
 /**
  * swap - swaps two integers
  * @a: first integer
