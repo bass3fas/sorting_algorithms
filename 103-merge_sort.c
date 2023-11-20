@@ -5,6 +5,8 @@
  * @size: The size of the array.
  * @left: The left sub-array.
  * @right: The right sub-array.
+ * @left_size: size of left array
+ * @right_size: size of right array
  */
 void merge(int *array, size_t size, int *left, size_t left_size,
 	   int *right, size_t right_size)
