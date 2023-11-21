@@ -1,45 +1,47 @@
 #include "sort.h"
+
 /**
- * counting_sort - sort array by counting occurance
+ * counting_sort - sort array by counting occurrence
  * @array: array to be sorted
  * @size: size of array
  */
 void counting_sort(int *array, size_t size)
 {
-	int max_value = array[0];
-	size_t i;
-	int *count_array;
-	int *sorted_array;
+	int max, *count, *output;
+	size_t i, n, l;
+	int j, k;
 
-	if (array == NULL || size <= 1)
+	if (size <= 1)
 		return;
-	for (i = 1; i < size; ++i)
+
+	max = array[0];
+	for (l = 1; l < size; ++l)
 	{
-		if (array[i] > max_value)
-			max_value = array[i];
+		if (array[l] > max)
+			max = array[l];
 	}
-	count_array = malloc((max_value + 1) * sizeof(int));
-	if (count_array == NULL)
+
+	count = calloc(max + 1, sizeof(int));
+	if (count == NULL)
 		return;
-	for (i = 0; i <= max_value; ++i)
-		count_array[i] = 0;
 	for (i = 0; i < size; ++i)
-		count_array[array[i]]++;
-	for (i = 1; i <= max_value; ++i)
-		count_array[i] += count_array[i - 1];
-	sorted_array = malloc(size * sizeof(int));
-	if (sorted_array == NULL)
+		++count[array[i]];
+	print_array(count, max + 1);
+	for (j = 1; j <= max; ++j)
+		count[j] += count[j - 1];
+	output = malloc(size * sizeof(int));
+	if (output == NULL)
 	{
-		free(count_array);
+		free(count);
 		return;
 	}
-	for (i = size - 1; i < size; --i)
+	for (k = size - 1; k >= 0; --k)
 	{
-		sorted_array[count_array[array[i]] - 1] = array[i];
-		count_array[array[i]]--;
+		output[count[array[k]] - 1] = array[k];
+		--count[array[k]];
 	}
-	for (i = 0; i < size; ++i)
-		array[i] = sorted_array[i];
-	free(count_array);
-	free(sorted_array);
+	for (n = 0; n < size; ++n)
+		array[n] = output[n];
+	free(output);
+	free(count);
 }
