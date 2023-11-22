@@ -7,7 +7,7 @@
  */
 void counting_sort(int *array, size_t size)
 {
-	int max = array[0];
+	int max;
 	int *count = NULL;
 	int *output = NULL;
 	size_t i, n, l;
@@ -15,6 +15,7 @@ void counting_sort(int *array, size_t size)
 
 	if (array == NULL || size < 2)
 		return;
+	max = array[0];
 	for (l = 1; l < size; ++l)
 	{
 		if (array[l] > max)
