@@ -28,13 +28,13 @@ int partiniorLomuto(int *array, int low, int high, size_t size)
 	int pivot = array[high];
 	int i = low - 1, j;
 
-	for (j = low; j <= high; j++)
+	for (j = low; j < high; j++)
 	{
 		if (array[j] < pivot)
 		{
 			i++;
 			swap(&array[i], &array[j]);
-			if (i != j)
+			if (array[i] != array[j])
 				print_array(array, size);
 		}
 	}
