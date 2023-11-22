@@ -34,7 +34,7 @@ int partiniorLomuto(int *array, int low, int high, size_t size)
 		{
 			i++;
 			swap(&array[i], &array[j]);
-			if (array[i] != array[j])
+			if (i != j)
 				print_array(array, size);
 		}
 	}
@@ -74,5 +74,6 @@ void quick_sort(int *array, size_t size)
 {
 	if (array == NULL || size < 2)
 		return;
-	sorter(array, 0, size - 1, size);
+	if (array[0] != array[size - 1])
+		sorter(array, 0, size - 1, size);
 }
